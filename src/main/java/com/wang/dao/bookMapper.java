@@ -26,4 +26,6 @@ public interface bookMapper
 
     //查询全部shushu
     List <Books> queryAll();
+
+    Books queryBookByName(String bookName);
 }

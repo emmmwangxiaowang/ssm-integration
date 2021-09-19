@@ -25,4 +25,6 @@ public interface bookService
 
     //查询全部shushu
     List <Books> queryAll();
+
+    Books queryBookByName(String bookName);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,5 +77,28 @@ public class bookController
     {
         bookService.deleteBookByID(id);
         return "redirect:/book/allBook";
+    }
+
+    //查询书籍
+    @RequestMapping("/queryBook")
+    public String queryBook(String queryBookName, Model model)
+    {
+        Books books = bookService.queryBookByName(queryBookName);
+
+        if ("".equals(queryBookName))
+        {
+            //输入为空,返回书籍页面
+            model.addAttribute("error", "结果为空");
+            return "redirect:/book/allBook";
+        } else if (books == null)
+        {
+            //books不存在,爆红,啥也不做
+            model.addAttribute("error", "查询用户不存在");
+        }
+
+        List <Books> list = new ArrayList <>();
+        list.add(books);
+        model.addAttribute("list", list);
+        return "allBook";
     }
 }
