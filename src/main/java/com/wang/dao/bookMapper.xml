@@ -2,28 +2,34 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http: //mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wang.pojo.Books">
+<mapper namespace="com.wang.dao.bookMapper">
     <insert id="addBook" parameterType="Books">
-        insert into ssmbuild.books(boookID,bookName,bookCounts,detail)
-        values(#{bookID},#{bookName},#{bookCounts},#{detail});
+        insert into ssmbuild.books(bookName,bookCounts,detail)
+        values(#{bookName},#{bookCounts},#{detail});
     </insert>
 
-    <delete id="deleteByID" parameterType="int">
-        delete from ssmbuild.books where id =#{bookID};
+    <delete id="deleteBookByID" parameterType="int">
+        delete from ssmbuild.books where bookID =#{bookID};
     </delete>
 
     <update id="updateBook" parameterType="Books">
         update ssmbuild.books set bookName=#{bookName},bookCounts=#{bookCounts},detail=#{detail}
-        where id =#{id};
+        where bookID =#{bookID};
     </update>
 
-    <select id="queryBookByID" parameterType="int">
-        select * from ssmbuild.books where id =#{id};
+    <select id="queryByID" parameterType="int" resultType="Books">
+        select * from ssmbuild.books where bookID =#{id};
     </select>
 
-    <select id="selectAll">
+    <select id="queryAll" resultType="Books">
 
-                select * from ssmbuild.books;
+
+
+
+                                        select * from ssmbuild.books;
+
+
+
 
     </select>
 </mapper>

@@ -12,9 +12,9 @@ import java.util.List;
 public class bookServiceImpl implements bookService
 {
     //service层调dao层
-    private bookMapper bookMapper;
+    private com.wang.dao.bookMapper bookMapper;
 
-    public void setBookMapper(com.wang.dao.bookMapper bookMapper)
+    public void setBookMapper(bookMapper bookMapper)
     {
         this.bookMapper = bookMapper;
     }

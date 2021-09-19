@@ -7,6 +7,7 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
+
     <!--1.关联数据库配置文件-->
     <context:property-placeholder location="classpath:database.properties"/>
 
@@ -16,19 +17,11 @@
         druid:
         hikari
     -->
-    <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
+    <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
-        <!--最大连接池-->
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="10"/>
-        <!--关闭自动提交-->
-        <property name="defaultAutoCommit" value="false"/>
-        <!--连接超时-->
-        <property name="loginTimeout" value="10000"/>
-        <!--连接失败重连次数-->
-        <property name="connectionErrorRetryAttempts" value="2"/>
     </bean>
 
     <!--3.SqlSessionFactory-->
@@ -45,5 +38,6 @@
         <!--要扫描的dao包-->
         <property name="basePackage" value="com.wang.dao"/>
     </bean>
+
 
 </beans>
